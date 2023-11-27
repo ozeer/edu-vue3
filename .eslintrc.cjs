@@ -11,17 +11,17 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
-  },
-  // 添加格式化规则
-  rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        semi: false,
-        wrapAttributes: false,
-        printWidth: 100,
-        endOfLine: 'auto'
-      }
-    ]
   }
+  // 添加格式化规则
+  // rules: {
+  //   'prettier/prettier': [
+  //     'error',
+  //     {
+  //       semi: false,
+  //       wrapAttributes: false,
+  //       printWidth: 100,
+  //       endOfLine: 'auto'
+  //     }
+  //   ]
+  // }
 }
