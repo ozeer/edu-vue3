@@ -37,7 +37,7 @@ import { isCollapse } from "./isCollapse";
 .el-header {
     display: flex;
     align-items: center;
-    background-color: #faecd8;
+    background-color: #b3e19d;
 
     .el-icon {
         margin-right: 18px;

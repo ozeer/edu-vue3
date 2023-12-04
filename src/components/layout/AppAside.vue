@@ -75,14 +75,14 @@ import { isCollapse } from "./isCollapse";
 
 <style lang="scss" scoped>
 .el-aside {
-    background-color: #f8e3c5;
+    background-color: #b3e19d;
     height: 100vh;
     width: auto;
 }
 
 .el-menu {
     width: 200px;
-    background-color: #f8e3c5;
+    background-color: #b3e19d;
     border-right: none;
 
     &.el-menu--collapse {
@@ -100,11 +100,15 @@ import { isCollapse } from "./isCollapse";
     align-items: center;
     height: 60px;
     text-decoration: none;
-    border-bottom: 1px dashed gray;
+    // border-bottom: 1px dashed gray;
 
     img {
         width: 32px;
         height: 32px;
+    }
+
+    h1 {
+        color: aliceblue;
     }
 }
 </style>

@@ -16,6 +16,11 @@ const router = createRouter({
           component: IndexView
         },
         {
+          name: 'ErrorPage',
+          path: '/:xxx(.*)*',
+          component: () => import('../views/errors/ErrorPageView.vue')
+        },
+        {
           name: 'roles',
           path: 'roles',
           component: () => import('../views/permissions/RoleView.vue')
