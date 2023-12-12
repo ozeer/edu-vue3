@@ -3,12 +3,15 @@ import { ElMessage, FormInstance, FormRules } from 'element-plus';
 import { reactive, ref } from 'vue';
 import { login } from "../../api/users"
 import { useTokenStore } from "../../stores/access_token"
+import { useRoute, useRouter } from 'vue-router';
 
 const store = useTokenStore()
+const router = useRouter();
+const route = useRoute();
 
 const form = reactive({
-    phone: '18701588471',
-    password: '123456',
+    phone: '18701588475',
+    password: '123456zy',
 })
 
 // 定义表单校验规则
@@ -48,11 +51,12 @@ const onSubmit = async () => {
         return res.data
     })
 
-    console.log(result)
-
-    store.saveToken(result.data)
+    store.saveToken(result.data.access_token)
 
     isLoading.value = false;
+
+    ElMessage.success("登录成功!")
+    router.push((route.query.redirect as string) || "/")
 }
 
 const formRef = ref<FormInstance>()
