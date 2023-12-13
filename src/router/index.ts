@@ -9,7 +9,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/login/LoginView.vue')
+      component: () => import('../views/user/LoginView.vue')
     },
     {
       path: '/',
@@ -53,13 +53,13 @@ const router = createRouter({
           component: () => import('../views/course/CourseListView.vue')
         },
         {
-          name: 'adv-list',
-          path: 'adv-list',
+          name: 'adv_list',
+          path: 'adv_list',
           component: () => import('../views/adv/AdvListView.vue')
         },
         {
-          name: 'adv-space',
-          path: 'adv-space',
+          name: 'adv_space',
+          path: 'adv_space',
           component: () => import('../views/adv/AdvSpaceView.vue')
         }
       ]

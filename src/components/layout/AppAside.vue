@@ -55,13 +55,13 @@ import { isCollapse } from "./isCollapse";
                         </el-icon>
                         <span>广告管理</span>
                     </template>
-                    <el-menu-item index="/adv-list">
+                    <el-menu-item index="/adv_list">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>
                         <span>广告列表</span>
                     </el-menu-item>
-                    <el-menu-item index="/adv-space">
+                    <el-menu-item index="/adv_space">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>

@@ -1,19 +1,18 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { ElMessage } from 'element-plus'
 
 export const useTokenStore = defineStore('access_token', () => {
-  const tokenJson = ref('')
+  const access_token = ref('')
   const token = computed(() => {
     try {
-      return tokenJson.value || ''
+      return access_token.value || window.localStorage.getItem('access_token')
     } catch (err) {
-      ElMessage.error('json字符串格式不对,解析失败')
+      console.log('token获取失败' + err)
       throw err
     }
   })
   function saveToken(data: string) {
-    tokenJson.value = data
+    access_token.value = data
     window.localStorage.setItem('access_token', data)
   }
 

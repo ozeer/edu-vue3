@@ -28,7 +28,7 @@ const handleLogout = async () => {
     // 清空token，跳转到登录页面
     ElMessage.success("用户已退出")
     useTokenStore().saveToken("")
-    router.push("/login")
+    router.push('/login')
 }
 </script>
 
