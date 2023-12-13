@@ -1,4 +1,7 @@
-import { ref } from 'vue'
+/**
+ * 用户管理接口
+ */
+
 import request from '@/utils/request'
 
 // 用户登录 - 参数类型
@@ -8,30 +11,16 @@ type LoginInfo = {
   password: string
 }
 
-// 用户登录 - 返回数据类型
-type LoginRes = {
-  msg: string
-  code: number
-  data: any
-}
-
 export const login = (loginInfo: LoginInfo) => {
-  return request<LoginRes>({
+  return request({
     method: 'POST',
     url: '/front/admin/user/login',
     data: `phone=${loginInfo.phone}&password=${loginInfo.password}`
   })
 }
 
-// 获取用户信息
-type UserInfoRes = {
-  uid: string
-  nick: string
-  avatar: string
-}
-
 export const getUserInfo = () => {
-  return request<UserInfoRes>({
+  return request({
     method: 'GET',
     url: '/front/admin/user/getUserInfo'
   })
@@ -42,5 +31,13 @@ export const logout = () => {
   return request({
     method: 'POST',
     url: '/front/admin/user/logout'
+  })
+}
+
+// 用户管理
+export const getUsers = () => {
+  return request({
+    method: 'GET',
+    url: '/front/admin/user/list'
   })
 }

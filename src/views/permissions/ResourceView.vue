@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { getResourceList } from "@/api/permissions"
 
+const resourceList = ref({})
+getResourceList().then((res) => {
+    resourceList.value = res.data.data;
+})
 </script>
 
 <template>

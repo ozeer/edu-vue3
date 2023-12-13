@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { getUsers } from "@/api/users"
 
+// 用户管理
+const userList = ref({})
+getUsers().then((res) => {
+    userList.value = res.data.data;
+})
 </script>
 
 <template>

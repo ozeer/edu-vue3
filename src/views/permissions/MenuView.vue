@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { getMenuList } from "@/api/permissions"
 
+const menuList = ref({})
+getMenuList().then((res) => {
+    menuList.value = res.data.data;
+})
 </script>
 
 <template>

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ElMessage, FormInstance, FormRules } from 'element-plus';
 import { reactive, ref } from 'vue';
-import { login } from "../../api/users"
-import { useTokenStore } from "../../stores/access_token"
+import { login } from "@/api/users"
+import { useTokenStore } from "@/stores/access_token"
 import { useRoute, useRouter } from 'vue-router';
 
 const store = useTokenStore()

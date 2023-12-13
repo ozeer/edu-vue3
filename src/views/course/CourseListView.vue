@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { getCourseList } from "@/api/courses"
 
+// 课程管理
+const courseList = ref({})
+getCourseList().then((res) => {
+    courseList.value = res.data.data;
+})
 </script>
 
 <template>
