@@ -31,7 +31,7 @@ getAllMenus()
                 <el-radio :label="true">是</el-radio>
                 <el-radio :label="false">否</el-radio>
             </el-radio-group>
-            <!-- <el-switch v-model="form.show" size="large" active-text="是" inactive-text="否" /> -->
+            <!-- <el-switch v-model="form.show" active-text="是" inactive-text="否" /> -->
         </el-form-item>
         <el-form-item label="排序">
             <el-input v-model="form.order_num" />

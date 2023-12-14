@@ -16,16 +16,16 @@ getAllMenus()
             </div>
         </template>
         <el-table :data="allMenus" border style="width: 100%">
-            <el-table-column type="index" prop="id" label="序号" width="60" align="center" />
+            <el-table-column type="index" label="序号" width="60" align="center" />
             <el-table-column prop="name" label="菜单名称" align="center" />
-            <el-table-column prop="level" label="菜单层级" align="center" />
+            <el-table-column prop="level" label="菜单层级" width="90" align="center" />
             <el-table-column prop="icon" label="菜单图标" align="center" />
-            <el-table-column prop="order_num" label="排序" align="center" />
+            <el-table-column prop="href" label="菜单路径" align="center" />
+            <el-table-column prop="order_num" label="排序" width="60" align="center" />
             <el-table-column label="操作">
                 <el-button class="primary">编辑</el-button>
                 <el-button class="danger">删除</el-button>
             </el-table-column>
-
         </el-table>
     </el-card>
 </template>
