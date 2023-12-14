@@ -84,11 +84,21 @@ const isLoading = ref(false)
 
 <style lang="scss" scoped>
 .login {
-    background-color: antiquewhite;
+    // background-color: antiquewhite;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    // 背景图片
+    background-image: url('@/assets/background.jpeg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    //background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url('@/assets/background.jpeg') no-repeat 0% 20%/ cover;
+
+
 
     .el-form {
         width: 400px;

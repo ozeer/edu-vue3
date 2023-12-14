@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { isCollapse } from "./isCollapse";
 import { getUserInfo, logout } from "@/api/users"
-import { useTokenStore } from "../../stores/access_token"
+import { useTokenStore } from "@/stores/access_token"
 import { useRouter } from 'vue-router';
 const router = useRouter()
 
@@ -10,6 +10,14 @@ const userInfo = ref({ avatar: '', nick: '' })
 getUserInfo().then((res) => {
     userInfo.value = res.data.data;
 })
+
+const handleUserProfile = async () => {
+    await getUserInfo().then((res) => {
+        console.log(res.data)
+    })
+
+    router.push('/user_profile')
+}
 
 // 退出登录
 const handleLogout = async () => {
@@ -42,7 +50,7 @@ const handleLogout = async () => {
         <!--面包屑-->
         <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item><a href="/">lu</a></el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/roles' }">二级菜单</el-breadcrumb-item>
         </el-breadcrumb>
         <!--下拉菜单-->
         <el-dropdown>
@@ -54,7 +62,7 @@ const handleLogout = async () => {
             </span>
             <template #dropdown>
                 <el-dropdown-menu>
-                    <el-dropdown-item>{{ userInfo.nick }}</el-dropdown-item>
+                    <el-dropdown-item @click="handleUserProfile">{{ userInfo.nick }}</el-dropdown-item>
                     <el-dropdown-item divided @click="handleLogout">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
             </template>
@@ -66,7 +74,8 @@ const handleLogout = async () => {
 .el-header {
     display: flex;
     align-items: center;
-    background-color: #758d71;
+    // background-color: #758d71;
+    border-bottom: 1px solid gray;
 
     .el-icon {
         margin-right: 18px;

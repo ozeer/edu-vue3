@@ -28,6 +28,11 @@ const router = createRouter({
           component: () => import('../views/errors/ErrorPageView.vue')
         },
         {
+          name: 'user_profile',
+          path: 'user_profile',
+          component: () => import('../views/user/UserProfileView.vue')
+        },
+        {
           name: 'roles',
           path: 'roles',
           component: () => import('../views/permissions/RoleView.vue')
