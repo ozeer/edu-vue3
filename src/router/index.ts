@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AppLayout from '@/components/layout/AppLayout.vue'
-import IndexView from '@/views/IndexView.vue'
 import { useTokenStore } from '@/stores/access_token'
 
 const router = createRouter({
@@ -9,7 +8,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/user/LoginView.vue')
+      component: () => import('../views/user/Login.vue')
     },
     {
       path: '/',
@@ -20,22 +19,22 @@ const router = createRouter({
         {
           name: 'default',
           path: '',
-          component: IndexView
+          component: () => import('../views/IndexView.vue')
         },
         {
           name: 'ErrorPage',
           path: '/:xxx(.*)*',
-          component: () => import('../views/errors/ErrorPageView.vue')
+          component: () => import('../views/errors/ErrorPage.vue')
         },
         {
           name: 'user_profile',
           path: 'user_profile',
-          component: () => import('../views/user/UserProfileView.vue')
+          component: () => import('../views/user/UserProfile.vue')
         },
         {
           name: 'roles',
           path: 'roles',
-          component: () => import('../views/permissions/RoleView.vue')
+          component: () => import('../views/permissions/Role.vue')
         },
         {
           name: 'menus',
@@ -50,27 +49,32 @@ const router = createRouter({
         {
           name: 'resources',
           path: 'resources',
-          component: () => import('../views/permissions/ResourceView.vue')
+          component: () => import('../views/permissions/Resource.vue')
         },
         {
           name: 'users',
           path: 'users',
-          component: () => import('../views/user/UserListView.vue')
+          component: () => import('../views/user/UserList.vue')
+        },
+        {
+          name: 'user_edit',
+          path: 'user_edit',
+          component: () => import('../views/user/UserEdit.vue')
         },
         {
           name: 'courses',
           path: 'courses',
-          component: () => import('../views/course/CourseListView.vue')
+          component: () => import('../views/course/CourseList.vue')
         },
         {
           name: 'adv_list',
           path: 'adv_list',
-          component: () => import('../views/adv/AdvListView.vue')
+          component: () => import('../views/adv/AdvList.vue')
         },
         {
           name: 'adv_space',
           path: 'adv_space',
-          component: () => import('../views/adv/AdvSpaceView.vue')
+          component: () => import('../views/adv/AdvSpace.vue')
         }
       ]
     }
