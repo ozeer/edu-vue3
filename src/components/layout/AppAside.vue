@@ -21,19 +21,19 @@ import { isCollapse } from "./isCollapse";
                         <el-icon>
                             <IEpSetting />
                         </el-icon>
-                        <span>角色列表</span>
+                        <span>角色管理</span>
                     </el-menu-item>
-                    <el-menu-item index="/menus">
+                    <el-menu-item index="/menu/list">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>
-                        <span>菜单列表</span>
+                        <span>菜单管理</span>
                     </el-menu-item>
                     <el-menu-item index="/resources">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>
-                        <span>资源列表</span>
+                        <span>资源管理</span>
                     </el-menu-item>
                 </el-sub-menu>
                 <el-menu-item index="/users">

@@ -84,7 +84,7 @@ const isLoading = ref(false)
 
 <style lang="scss" scoped>
 .login {
-    background-color: antiquewhite;
+    background-color: #f4f4f5;
     height: 100vh;
     display: flex;
     justify-content: center;

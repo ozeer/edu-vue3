@@ -5,16 +5,26 @@
 import request from '@/utils/request'
 import { useTokenStore } from '@/stores/access_token'
 
+type CommonResp<T> = {
+  code: number
+  msg: string
+  data: T
+}
+
 // 用户登录 - 参数类型
-type LoginInfo = {
+type LoginReq = {
   phone: string
   code?: string
   password: string
 }
 
+type LoginResp = CommonResp<{
+  uid: string
+}>
+
 // 登录
-export const login = (loginInfo: LoginInfo) => {
-  return request({
+export const login = (loginInfo: LoginReq) => {
+  return request<LoginResp>({
     method: 'POST',
     url: '/front/admin/user/login',
     data: `phone=${loginInfo.phone}&password=${loginInfo.password}`

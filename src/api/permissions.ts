@@ -4,6 +4,12 @@
 
 import request from '@/utils/request'
 
+type CommonResp<T> = {
+  code: number
+  msg: string
+  data: T
+}
+
 /**
  * 角色列表接口
  * @returns
@@ -12,17 +18,6 @@ export const getRoleList = () => {
   return request({
     method: 'GET',
     url: '/front/admin/permissions/roles'
-  })
-}
-
-/**
- * 菜单列表接口
- * @returns
- */
-export const getMenuList = () => {
-  return request({
-    method: 'GET',
-    url: '/front/admin/permissions/menu'
   })
 }
 

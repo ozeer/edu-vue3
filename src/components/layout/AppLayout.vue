@@ -26,7 +26,7 @@ import AppHeader from "./AppHeader.vue"
 }
 
 .el-main {
-    background-color: #fff;
-    padding-right: 0;
+    background-color: #f4f4f5;
+    // padding-right: 0;
 }
 </style>

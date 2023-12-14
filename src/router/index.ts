@@ -39,8 +39,13 @@ const router = createRouter({
         },
         {
           name: 'menus',
-          path: 'menus',
-          component: () => import('../views/permissions/MenuView.vue')
+          path: 'menu/list',
+          component: () => import('../views/menu/MenuIndex.vue')
+        },
+        {
+          name: 'menu_edit',
+          path: 'menu/edit',
+          component: () => import('../views/menu/MenuEdit.vue')
         },
         {
           name: 'resources',
