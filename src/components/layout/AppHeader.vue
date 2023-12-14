@@ -74,8 +74,7 @@ const handleLogout = async () => {
 .el-header {
     display: flex;
     align-items: center;
-    // background-color: #758d71;
-    border-bottom: 1px solid gray;
+    background-color: #758d71;
 
     .el-icon {
         margin-right: 18px;
