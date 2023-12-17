@@ -4,8 +4,17 @@ import { useMenus } from "@/combined/useMenus"
 
 const router = useRouter();
 const { allMenus, getAllMenus } = useMenus()
-
 getAllMenus()
+
+const handleEditMenu = async () => {
+    console.log("编辑菜单");
+
+}
+
+const handleDeleteMenu = async () => {
+    console.log("删除菜单");
+
+}
 </script>
 
 <template>
@@ -23,8 +32,8 @@ getAllMenus()
             <el-table-column prop="href" label="菜单路径" align="center" />
             <el-table-column prop="order_num" label="排序" width="60" align="center" />
             <el-table-column label="操作">
-                <el-button class="primary">编辑</el-button>
-                <el-button class="danger">删除</el-button>
+                <el-button class="primary" @click="handleEditMenu">编辑</el-button>
+                <el-button class="danger" @click="handleDeleteMenu">删除</el-button>
             </el-table-column>
         </el-table>
     </el-card>

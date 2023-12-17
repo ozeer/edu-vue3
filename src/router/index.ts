@@ -8,7 +8,7 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/user/Login.vue')
+      component: () => import('../views/user/UserLogin.vue')
     },
     {
       path: '/',
@@ -34,7 +34,7 @@ const router = createRouter({
         {
           name: 'roles',
           path: 'roles',
-          component: () => import('../views/permissions/Role.vue')
+          component: () => import('../views/permissions/RoleList.vue')
         },
         {
           name: 'menus',
@@ -49,7 +49,7 @@ const router = createRouter({
         {
           name: 'resources',
           path: 'resources',
-          component: () => import('../views/permissions/Resource.vue')
+          component: () => import('../views/permissions/ResourceList.vue')
         },
         {
           name: 'users',

@@ -34,7 +34,7 @@ export const getMenuList = () => {
   })
 }
 
-type MenuForm = {
+export type MenuForm = {
   id: number
   name: string
   description: string

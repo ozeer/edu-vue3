@@ -4,12 +4,6 @@
 
 import request from '@/utils/request'
 
-type CommonResp<T> = {
-  code: number
-  msg: string
-  data: T
-}
-
 /**
  * 角色列表接口
  * @returns
