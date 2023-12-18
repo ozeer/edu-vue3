@@ -42,8 +42,13 @@ const router = createRouter({
           component: () => import('../views/menu/MenuIndex.vue')
         },
         {
+          name: 'menu_create',
+          path: 'menu/create',
+          component: () => import('../views/menu/MenuEdit.vue')
+        },
+        {
           name: 'menu_edit',
-          path: 'menu/edit',
+          path: 'menu/edit/:id',
           component: () => import('../views/menu/MenuEdit.vue')
         },
         {

@@ -3,25 +3,15 @@ import { useRouter } from 'vue-router';
 import { useMenus } from "@/combined/useMenus"
 
 const router = useRouter();
-const { allMenus, getAllMenus } = useMenus()
+const { allMenus, getAllMenus, handleDeleteMenu } = useMenus()
 getAllMenus()
-
-const handleEditMenu = async () => {
-    console.log("编辑菜单");
-
-}
-
-const handleDeleteMenu = async () => {
-    console.log("删除菜单");
-
-}
 </script>
 
 <template>
     <el-card class="box-card">
         <template #header>
             <div class="card-header">
-                <el-button class="button" @click="router.push({ 'name': 'menu_edit' })">添加菜单</el-button>
+                <el-button class="button" type="primary" @click="router.push({ 'name': 'menu_create' })">添加菜单</el-button>
             </div>
         </template>
         <el-table :data="allMenus" border style="width: 100%">
@@ -31,9 +21,10 @@ const handleDeleteMenu = async () => {
             <el-table-column prop="icon" label="菜单图标" align="center" />
             <el-table-column prop="href" label="菜单路径" align="center" />
             <el-table-column prop="order_num" label="排序" width="60" align="center" />
-            <el-table-column label="操作">
-                <el-button class="primary" @click="handleEditMenu">编辑</el-button>
-                <el-button class="danger" @click="handleDeleteMenu">删除</el-button>
+            <el-table-column label="操作" v-slot="scope">
+                <el-button class="primary" type="primary"
+                    @click="router.push({ 'name': 'menu_edit', params: { id: scope.row.id } })">编辑</el-button>
+                <el-button class="danger" type="danger" @click="handleDeleteMenu(scope.row.id)">删除</el-button>
             </el-table-column>
         </el-table>
     </el-card>

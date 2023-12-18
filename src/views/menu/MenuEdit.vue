@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { useMenus } from "@/combined/useMenus"
+import { useRoute } from 'vue-router';
 
-const { getAllMenus, topMenus, form, onSubmit } = useMenus()
-
+const route = useRoute();
+const { getAllMenus, topMenus, form, onSubmit, getMenuInfoById, msgText } = useMenus()
 getAllMenus()
+if (route.params.id) {
+    getMenuInfoById(route.params.id as string)
+}
+
 </script>
 
 <template>
@@ -37,7 +42,7 @@ getAllMenus()
             <el-input v-model="form.order_num" />
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="onSubmit">立即创建</el-button>
+            <el-button type="primary" @click="onSubmit">立即{{ msgText }}</el-button>
         </el-form-item>
     </el-form>
 </template>

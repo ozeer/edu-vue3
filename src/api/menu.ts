@@ -34,6 +34,21 @@ export const getMenuList = () => {
   })
 }
 
+type SubMenuList = MenuItem & { subMenuList: SubMenuList[] }
+type EditMenuInfo = CommonResp<{
+  menuInfo: MenuItem
+  parentMenuList: SubMenuList[]
+}>
+export const getMenuInfo = (id: string) => {
+  return request<EditMenuInfo>({
+    method: 'GET',
+    url: '/front/admin/menu/info',
+    params: {
+      id
+    }
+  })
+}
+
 export type MenuForm = {
   id: number
   name: string
@@ -55,9 +70,17 @@ export type MenuForm = {
 // > & { id?: number }
 
 export const menuEdit = (menuInfo: MenuForm) => {
-  return request({
+  return request<CommonResp<Boolean>>({
     method: 'POST',
     url: '/front/admin/menu/edit',
     data: menuInfo
+  })
+}
+
+export const menuDelete = (id: string) => {
+  return request<CommonResp<Boolean>>({
+    method: 'POST',
+    url: '/front/admin/menu/del',
+    data: `id=${id}`
   })
 }

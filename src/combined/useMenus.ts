@@ -1,7 +1,7 @@
-import { getMenuList, menuEdit } from '@/api/menu'
+import { getMenuList, menuEdit, menuDelete, getMenuInfo } from '@/api/menu'
 import type { MenuItem, MenuForm } from '@/api/menu'
 import router from '@/router/index'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { computed, ref } from 'vue'
 
 export function useMenus() {
@@ -39,11 +39,66 @@ export function useMenus() {
     const { data } = await menuEdit(form.value)
 
     if (data.code === 200) {
+      ElMessage.success(`${msgText.value}成功！`)
       router.push({ name: 'menus' })
+      return
     } else {
-      throw new Error('菜单信息保存失败')
+      ElMessage.success(`菜单信息${msgText.value}失败！`)
+      throw new Error(`菜单信息${msgText.value}失败`)
     }
   }
 
-  return { allMenus, getAllMenus, topMenu, form, onSubmit }
+  // 删除菜单
+  const handleDeleteMenu = async (id: string) => {
+    await ElMessageBox.confirm('确认要删除该菜单吗？', '删除提醒', {
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }).catch(() => {
+      ElMessage.info('删除操作被取消！')
+      return new Promise(() => {})
+    })
+
+    const { data } = await menuDelete(id)
+
+    if (data.code === 200) {
+      ElMessage.success('删除成功！')
+      getAllMenus()
+    } else {
+      ElMessage.error('菜单信息删除失败')
+      throw new Error('菜单信息删除失败')
+    }
+  }
+
+  const getMenuInfoById = async (id: string) => {
+    if (!Number(id)) {
+      isCreate.value = true
+      return
+    } else {
+      isCreate.value = false
+    }
+    const { data } = await getMenuInfo(id)
+
+    if (data.code === 200) {
+      form.value = data.data.menuInfo
+    } else {
+      ElMessage.error('获取菜单信息失败')
+      throw new Error('获取菜单信息失败')
+    }
+  }
+
+  // 状态与提示文本
+  const isCreate = ref(true)
+  const msgText = computed(() => (isCreate.value ? '创建' : '更新'))
+
+  return {
+    allMenus,
+    getAllMenus,
+    topMenu,
+    form,
+    onSubmit,
+    handleDeleteMenu,
+    getMenuInfoById,
+    msgText
+  }
 }
