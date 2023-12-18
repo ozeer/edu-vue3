@@ -16,7 +16,7 @@ const handleUserProfile = async () => {
         console.log(res.data)
     })
 
-    router.push('/user_profile')
+    router.push('/user/profile')
 }
 
 // 退出登录
@@ -49,8 +49,9 @@ const handleLogout = async () => {
         </el-icon>
         <!--面包屑-->
         <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: '/roles' }">二级菜单</el-breadcrumb-item>
+            <el-breadcrumb-item v-for="(item, index) in $route.matched" :key="index" :to="{ path: item.path }">{{
+                item.meta.title
+            }}</el-breadcrumb-item>
         </el-breadcrumb>
         <!--下拉菜单-->
         <el-dropdown>

@@ -14,12 +14,13 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: AppLayout,
-      meta: { requiresAuth: true },
+      meta: { requiresAuth: true, title: '首页' },
       children: [
         {
           name: 'default',
           path: '',
-          component: () => import('../views/IndexView.vue')
+          component: () => import('../views/IndexView.vue'),
+          meta: { title: '默认页' }
         },
         {
           name: 'ErrorPage',
@@ -28,58 +29,69 @@ const router = createRouter({
         },
         {
           name: 'user_profile',
-          path: 'user_profile',
-          component: () => import('../views/user/UserProfile.vue')
+          path: 'user/profile',
+          component: () => import('../views/user/UserProfile.vue'),
+          meta: { title: '用户详情' }
         },
         {
           name: 'roles',
-          path: 'roles',
-          component: () => import('../views/permissions/RoleList.vue')
+          path: 'role/list',
+          component: () => import('../views/permissions/RoleList.vue'),
+          meta: { title: '角色列表' }
         },
         {
           name: 'menus',
           path: 'menu/list',
-          component: () => import('../views/menu/MenuIndex.vue')
+          component: () => import('../views/menu/MenuIndex.vue'),
+          meta: { title: '菜单列表' }
         },
         {
           name: 'menu_create',
           path: 'menu/create',
-          component: () => import('../views/menu/MenuEdit.vue')
+          component: () => import('../views/menu/MenuEdit.vue'),
+          meta: { title: '创建菜单' }
         },
         {
           name: 'menu_edit',
           path: 'menu/edit/:id',
-          component: () => import('../views/menu/MenuEdit.vue')
+          component: () => import('../views/menu/MenuEdit.vue'),
+          meta: { title: '编辑菜单' }
         },
         {
           name: 'resources',
           path: 'resource/list',
-          component: () => import('../views/resource/ResourceList.vue')
+          component: () => import('../views/resource/ResourceList.vue'),
+          meta: { title: '资源列表' }
         },
         {
           name: 'users',
-          path: 'users',
-          component: () => import('../views/user/UserList.vue')
+          path: 'user/list',
+          component: () => import('../views/user/UserList.vue'),
+          meta: { title: '用户列表' }
         },
         {
           name: 'user_edit',
-          path: 'user_edit',
-          component: () => import('../views/user/UserEdit.vue')
+          path: 'user/edit',
+          component: () => import('../views/user/UserEdit.vue'),
+          meta: { title: '编辑用户' }
         },
         {
           name: 'courses',
-          path: 'courses',
-          component: () => import('../views/course/CourseList.vue')
+          path: 'course/list',
+          component: () => import('../views/course/CourseList.vue'),
+          meta: { title: '课程列表' }
         },
         {
           name: 'adv_list',
-          path: 'adv_list',
-          component: () => import('../views/adv/AdvList.vue')
+          path: 'adv/list',
+          component: () => import('../views/adv/AdvList.vue'),
+          meta: { title: '广告列表' }
         },
         {
           name: 'adv_space',
-          path: 'adv_space',
-          component: () => import('../views/adv/AdvSpace.vue')
+          path: 'adv/space',
+          component: () => import('../views/adv/AdvSpace.vue'),
+          meta: { title: '广告位管理' }
         }
       ]
     }

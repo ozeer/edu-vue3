@@ -17,7 +17,7 @@ import { isCollapse } from "./isCollapse";
                         </el-icon>
                         <span>权限管理</span>
                     </template>
-                    <el-menu-item index="/roles">
+                    <el-menu-item index="/role/list">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>
@@ -36,13 +36,13 @@ import { isCollapse } from "./isCollapse";
                         <span>资源管理</span>
                     </el-menu-item>
                 </el-sub-menu>
-                <el-menu-item index="/users">
+                <el-menu-item index="/user/list">
                     <el-icon>
                         <IEpUser />
                     </el-icon>
                     <span>用户管理</span>
                 </el-menu-item>
-                <el-menu-item index="/courses">
+                <el-menu-item index="/course/list">
                     <el-icon>
                         <IEpNotebook />
                     </el-icon>
@@ -55,13 +55,13 @@ import { isCollapse } from "./isCollapse";
                         </el-icon>
                         <span>广告管理</span>
                     </template>
-                    <el-menu-item index="/adv_list">
+                    <el-menu-item index="/adv/list">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>
                         <span>广告列表</span>
                     </el-menu-item>
-                    <el-menu-item index="/adv_space">
+                    <el-menu-item index="/adv/space">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>
@@ -92,6 +92,10 @@ import { isCollapse } from "./isCollapse";
             display: none;
         }
     }
+
+    // .el-menu-item:hover {
+    //     background-color: gray;
+    // }
 }
 
 .logo {

@@ -7,7 +7,7 @@ import { computed, ref } from 'vue'
 export function useMenus() {
   // 先获取一级菜单
   // 1、获取所有菜单
-  const allMenus = ref()
+  const allMenus = ref([] as MenuItem[])
   const getAllMenus = async () => {
     const { data } = await getMenuList()
 
@@ -20,7 +20,7 @@ export function useMenus() {
   }
 
   // 2、过滤所有一级菜单
-  const topMenu = computed(() => allMenus.value.filter((menu: MenuItem) => menu.level === 0))
+  const topMenus = computed(() => allMenus.value.filter((menu: MenuItem) => menu.level === 0))
 
   // 3、表单的响应数据
   const form = ref<MenuForm>({
@@ -94,7 +94,7 @@ export function useMenus() {
   return {
     allMenus,
     getAllMenus,
-    topMenu,
+    topMenus,
     form,
     onSubmit,
     handleDeleteMenu,
