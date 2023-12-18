@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { allResourceCategory, getAllResourceCategory } from "@/combined/useResource"
+import { useResource } from "../../combined/useResource"
+
+const { allResourceCategory, getAllResourceCategory } = useResource()
+
 getAllResourceCategory()
 </script>
 

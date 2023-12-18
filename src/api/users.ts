@@ -20,6 +20,8 @@ type LoginReq = {
 
 type LoginResp = CommonResp<{
   uid: string
+  nick: string
+  access_token: string
 }>
 
 // 登录
@@ -56,13 +58,13 @@ export const getUsers = () => {
 }
 
 // 刷新token
-type RToken = {
+type RefreshToken = {
   code: number
   data: any
   msg: string
 }
 export const refreshToken = () => {
-  return request<RToken>({
+  return request<RefreshToken>({
     method: 'POST',
     url: '/front/admin/user/refresh_token',
     params: {

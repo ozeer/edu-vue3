@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useMenus } from "@/combined/useMenus"
+import { useMenus } from "../../combined/useMenus"
 import { useRoute } from 'vue-router';
 
 const route = useRoute();

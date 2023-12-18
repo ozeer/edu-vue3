@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getCourseList } from "@/api/courses"
+import { getCourseList } from "../../api/courses"
 
 // 课程管理
 const courseList = ref({})

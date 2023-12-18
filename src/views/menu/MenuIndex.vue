@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { useMenus } from "@/combined/useMenus"
+import { useMenus } from "../../combined/useMenus"
 
 const router = useRouter();
 const { allMenus, getAllMenus, handleDeleteMenu } = useMenus()

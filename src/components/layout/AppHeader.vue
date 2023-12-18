@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { isCollapse } from "./isCollapse";
-import { getUserInfo, logout } from "@/api/users"
-import { useTokenStore } from "@/stores/access_token"
+import { getUserInfo, logout } from "../../api/users"
+import { useTokenStore } from "../../stores/access_token"
 import { useRouter } from 'vue-router';
 const router = useRouter()
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getRoleList } from "@/api/permissions"
+import { getRoleList } from "../../api/permissions"
 
 const rolesList = ref({})
 getRoleList().then((res) => {
