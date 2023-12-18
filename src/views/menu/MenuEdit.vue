@@ -8,7 +8,6 @@ getAllMenus()
 if (route.params.id) {
     getMenuInfoById(route.params.id as string)
 }
-
 </script>
 
 <template>

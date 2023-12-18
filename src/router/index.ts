@@ -53,8 +53,8 @@ const router = createRouter({
         },
         {
           name: 'resources',
-          path: 'resources',
-          component: () => import('../views/permissions/ResourceList.vue')
+          path: 'resource/list',
+          component: () => import('../views/resource/ResourceList.vue')
         },
         {
           name: 'users',

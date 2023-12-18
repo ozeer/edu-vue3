@@ -29,7 +29,7 @@ import { isCollapse } from "./isCollapse";
                         </el-icon>
                         <span>菜单管理</span>
                     </el-menu-item>
-                    <el-menu-item index="/resources">
+                    <el-menu-item index="/resource/list">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>

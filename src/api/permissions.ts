@@ -14,14 +14,3 @@ export const getRoleList = () => {
     url: '/front/admin/permissions/roles'
   })
 }
-
-/**
- * 资源列表接口
- * @returns
- */
-export const getResourceList = () => {
-  return request({
-    method: 'GET',
-    url: '/front/admin/permissions/resource'
-  })
-}
