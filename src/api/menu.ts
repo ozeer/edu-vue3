@@ -1,10 +1,5 @@
 import request from '@/utils/request'
-
-type CommonResp<T> = {
-  code: number
-  msg: string
-  data: T
-}
+import type { CommonResp } from '@/utils/response'
 
 /**
  * 菜单列表接口

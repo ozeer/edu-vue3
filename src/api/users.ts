@@ -4,12 +4,7 @@
 
 import request from '@/utils/request'
 import { useTokenStore } from '@/stores/access_token'
-
-type CommonResp<T> = {
-  code: number
-  msg: string
-  data: T
-}
+import type { CommonResp } from '@/utils/response'
 
 // 用户登录 - 参数类型
 type LoginReq = {
