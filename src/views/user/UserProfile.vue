@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { getUserProfile } from "../../api/users"
 
+const userProfile = ref({ avatar: '', nick: '' })
+getUserProfile().then((res) => {
+    userProfile.value = res.data.data;
+})
 </script>
 
 <template class="user_profile">

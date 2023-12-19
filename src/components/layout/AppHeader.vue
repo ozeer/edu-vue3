@@ -11,14 +11,6 @@ getUserInfo().then((res) => {
     userInfo.value = res.data.data;
 })
 
-const handleUserProfile = async () => {
-    await getUserInfo().then((res) => {
-        console.log(res.data)
-    })
-
-    router.push('/user/profile')
-}
-
 // 退出登录
 const handleLogout = async () => {
     // 询问确认退出登录吗？
@@ -63,7 +55,8 @@ const handleLogout = async () => {
             </span>
             <template #dropdown>
                 <el-dropdown-menu>
-                    <el-dropdown-item @click="handleUserProfile">{{ userInfo.nick }}</el-dropdown-item>
+                    <el-dropdown-item @click="router.push({ 'name': 'user_profile' })">{{ userInfo.nick
+                    }}</el-dropdown-item>
                     <el-dropdown-item divided @click="handleLogout">退出登录</el-dropdown-item>
                 </el-dropdown-menu>
             </template>

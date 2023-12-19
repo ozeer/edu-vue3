@@ -36,6 +36,14 @@ export const getUserInfo = () => {
   })
 }
 
+// 获取用户个人资料详情
+export const getUserProfile = () => {
+  return request({
+    method: 'GET',
+    url: '/front/admin/user/getUserProfile'
+  })
+}
+
 // 用户退出
 export const logout = () => {
   return request({
