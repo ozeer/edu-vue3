@@ -19,7 +19,7 @@ export type MenuItem = {
   level: number
   order_num: number
   parent_id: number
-  show: boolean
+  show: number
   creator: number
   operator: number
   created_at: string
@@ -52,12 +52,12 @@ export const getMenuInfo = (id: string) => {
 export type MenuForm = {
   id: number
   name: string
-  description: string
   href: string
-  icon: string
-  order_num: number
   parent_id: number
-  show: boolean
+  description: string
+  icon: string
+  show: number
+  order_num: number
 }
 
 // type MenuForm = Partial<MenuItem>

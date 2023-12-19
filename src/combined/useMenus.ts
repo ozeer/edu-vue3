@@ -29,13 +29,19 @@ export function useMenus() {
     parent_id: -1,
     description: '',
     icon: '',
-    show: true,
+    show: 1,
     order_num: 0,
     id: 0
   })
 
   // 表单提交事件
   const onSubmit = async () => {
+    // 检查必填字短
+    if (!form.value.name || !form.value.href || !form.value.icon || !form.value.parent_id) {
+      ElMessage.error('数据不能为空')
+      return
+    }
+
     const { data } = await menuEdit(form.value)
 
     if (data.code === 200) {

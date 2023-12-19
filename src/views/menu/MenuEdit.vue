@@ -32,8 +32,8 @@ if (route.params.id) {
         </el-form-item>
         <el-form-item label="是否显示">
             <el-radio-group v-model="form.show">
-                <el-radio :label="true">是</el-radio>
-                <el-radio :label="false">否</el-radio>
+                <el-radio :label="1">是</el-radio>
+                <el-radio :label="0">否</el-radio>
             </el-radio-group>
             <!-- <el-switch v-model="form.show" active-text="是" inactive-text="否" /> -->
         </el-form-item>
