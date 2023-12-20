@@ -23,7 +23,7 @@ const router = createRouter({
           meta: { title: '默认页' }
         },
         {
-          name: 'ErrorPage',
+          name: 'error_page',
           path: '/:xxx(.*)*',
           component: () => import('../views/errors/ErrorPage.vue')
         },
