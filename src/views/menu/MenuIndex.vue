@@ -8,14 +8,6 @@ getAllMenus(1, 15)
 
 const currentPage = ref(1)
 const pageSize = ref(15)
-const handleSizeChange = (val: number) => {
-    pageSize.value = val
-    getAllMenus(currentPage.value, pageSize.value)
-}
-const handleCurrentChange = (val: number) => {
-    currentPage.value = val
-    getAllMenus(currentPage.value, pageSize.value)
-}
 </script>
 
 <template>
@@ -41,7 +33,7 @@ const handleCurrentChange = (val: number) => {
         <el-divider />
         <el-pagination background v-model:current-page="currentPage" v-model:page-size="pageSize"
             :page-sizes="[10, 15, 20, 30]" layout="total, prev, pager, next, sizes" :total="totalPage"
-            @size-change="handleSizeChange" @current-change="handleCurrentChange" />
+            @size-change="getAllMenus(currentPage, pageSize)" @current-change="getAllMenus(currentPage, pageSize)" />
     </el-card>
 </template>
 
