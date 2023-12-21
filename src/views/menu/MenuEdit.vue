@@ -3,8 +3,8 @@ import { useMenus } from "../../combined/useMenus"
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const { getAllMenus, topMenus, form, onSubmit, getMenuInfoById, msgText } = useMenus()
-getAllMenus(1, 15)
+const { getTopMenus, topMenus, form, onSubmit, getMenuInfoById, msgText } = useMenus()
+getTopMenus()
 if (route.params.id) {
     getMenuInfoById(route.params.id as string)
 }

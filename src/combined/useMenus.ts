@@ -1,4 +1,4 @@
-import { getMenuList, menuEdit, menuDelete, getMenuInfo } from '@/api/menu'
+import { getMenuList, getTopMenuList, menuEdit, menuDelete, getMenuInfo } from '@/api/menu'
 import type { MenuItem, MenuForm } from '@/api/menu'
 import router from '@/router/index'
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -22,7 +22,17 @@ export function useMenus() {
   }
 
   // 2、过滤所有一级菜单
-  const topMenus = computed(() => allMenus.value.filter((menu: MenuItem) => menu.level === 0))
+  const topMenus = ref([] as MenuItem[])
+  const getTopMenus = async () => {
+    const { data } = await getTopMenuList()
+
+    if (data.code === 200) {
+      topMenus.value = data.data.list
+    } else {
+      ElMessage.error('获取顶级菜单信息失败')
+      throw new Error('获取顶级菜单信息失败')
+    }
+  }
 
   // 3、表单的响应数据
   const form = ref<MenuForm>({
@@ -103,6 +113,7 @@ export function useMenus() {
     allMenus,
     totalPage,
     getAllMenus,
+    getTopMenus,
     topMenus,
     form,
     onSubmit,
