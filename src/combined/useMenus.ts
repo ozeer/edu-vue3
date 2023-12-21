@@ -8,11 +8,13 @@ export function useMenus() {
   // 先获取一级菜单
   // 1、获取所有菜单
   const allMenus = ref([] as MenuItem[])
-  const getAllMenus = async () => {
-    const { data } = await getMenuList()
+  const totalPage = ref(0)
+  const getAllMenus = async (page: number, size: number) => {
+    const { data } = await getMenuList(page, size)
 
     if (data.code === 200) {
-      allMenus.value = data.data
+      allMenus.value = data.data.list
+      totalPage.value = data.data.total
     } else {
       ElMessage.error('获取菜单信息失败')
       throw new Error('获取菜单信息失败')
@@ -69,7 +71,7 @@ export function useMenus() {
 
     if (data.code === 200) {
       ElMessage.success('删除成功！')
-      getAllMenus()
+      getAllMenus(1, 15)
     } else {
       ElMessage.error('菜单信息删除失败')
       throw new Error('菜单信息删除失败')
@@ -99,6 +101,7 @@ export function useMenus() {
 
   return {
     allMenus,
+    totalPage,
     getAllMenus,
     topMenus,
     form,

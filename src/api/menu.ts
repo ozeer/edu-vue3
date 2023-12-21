@@ -22,10 +22,19 @@ export type MenuItem = {
   deleted_at: string
 }
 
-export const getMenuList = () => {
-  return request<CommonResp<MenuItem[]>>({
+export const getMenuList = (page: number, size: number) => {
+  return request<
+    CommonResp<{
+      list: MenuItem[]
+      total: number
+    }>
+  >({
     method: 'GET',
-    url: '/front/admin/menu/list'
+    url: '/front/admin/menu/list',
+    params: {
+      page,
+      size
+    }
   })
 }
 

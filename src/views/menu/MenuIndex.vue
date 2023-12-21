@@ -3,8 +3,19 @@ import { useRouter } from 'vue-router';
 import { useMenus } from "../../combined/useMenus"
 
 const router = useRouter();
-const { allMenus, getAllMenus, handleDeleteMenu } = useMenus()
-getAllMenus()
+const { allMenus, totalPage, getAllMenus, handleDeleteMenu } = useMenus()
+getAllMenus(1, 15)
+
+const currentPage = ref(1)
+const pageSize = ref(15)
+const handleSizeChange = (val: number) => {
+    pageSize.value = val
+    getAllMenus(currentPage.value, pageSize.value)
+}
+const handleCurrentChange = (val: number) => {
+    currentPage.value = val
+    getAllMenus(currentPage.value, pageSize.value)
+}
 </script>
 
 <template>
@@ -27,6 +38,10 @@ getAllMenus()
                 <el-button class="danger" type="danger" @click="handleDeleteMenu(scope.row.id)">删除</el-button>
             </el-table-column>
         </el-table>
+        <el-divider />
+        <el-pagination background v-model:current-page="currentPage" v-model:page-size="pageSize"
+            :page-sizes="[10, 15, 20, 30]" layout="total, prev, pager, next, sizes" :total="totalPage"
+            @size-change="handleSizeChange" @current-change="handleCurrentChange" />
     </el-card>
 </template>
 

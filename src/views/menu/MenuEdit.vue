@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 const { getAllMenus, topMenus, form, onSubmit, getMenuInfoById, msgText } = useMenus()
-getAllMenus()
+getAllMenus(1, 15)
 if (route.params.id) {
     getMenuInfoById(route.params.id as string)
 }
