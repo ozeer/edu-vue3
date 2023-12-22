@@ -64,6 +64,12 @@ const router = createRouter({
           meta: { title: '资源列表' }
         },
         {
+          name: 'resource_category',
+          path: 'resource/category',
+          component: () => import('../views/resource/ResourceCategory.vue'),
+          meta: { title: '资源类别' }
+        },
+        {
           name: 'users',
           path: 'user/list',
           component: () => import('../views/user/UserList.vue'),

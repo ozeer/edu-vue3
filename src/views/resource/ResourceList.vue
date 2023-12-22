@@ -1,42 +1,60 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { useMenus } from "../../combined/useMenus"
-import { getRoleList } from "../../api/permissions"
-import { useResource } from "../../combined/useResource"
+import { FormInstance } from 'element-plus';
+import { queryCondition, queryResult, queryResources } from "../../combined/useResources"
+import { allResourceCategory, getAllResourceCategory } from "../../combined/useResourceCategory"
 
-const { allResourceCategory, getAllResourceCategory } = useResource()
-
-getAllResourceCategory()
 const router = useRouter();
-const { allMenus, getAllMenus, handleDeleteMenu } = useMenus()
-getAllMenus(1, 15)
+const queryFm = ref<FormInstance>()
 
-const rolesList = ref({})
-getRoleList().then((res) => {
-    rolesList.value = res.data.data;
-})
+queryResources()
+getAllResourceCategory()
 </script>
 
 <template>
     <el-card class="box-card">
         <template #header>
-            <div class="card-header">
-                <el-button class="button" type="primary" @click="router.push({ 'name': 'menu_create' })">添加菜单</el-button>
-            </div>
+            <el-form :inline="true" :model="queryCondition" class="demo-form-inline" ref="queryFm">
+                <el-form-item label="资源名称" prop="name">
+                    <el-input v-model="queryCondition.name" placeholder="资源名称" clearable />
+                </el-form-item>
+                <el-form-item label="资源路径" prop="url">
+                    <el-input v-model="queryCondition.url" placeholder="资源路径" clearable />
+                </el-form-item>
+                <el-form-item label="资源分类" prop="categoryId">
+                    <el-select v-model="queryCondition.categoryId" placeholder="资源分类" clearable>
+                        <el-option label="不限制" value="" />
+                        <el-option v-for="category in allResourceCategory" :key="category.id" :label="category.name"
+                            :value="category.id" />
+                    </el-select>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="queryFm?.resetFields()">重置</el-button>
+                    <el-button type="primary" @click="queryResources()">搜索查询</el-button>
+                </el-form-item>
+            </el-form>
         </template>
-        <el-table :data="allMenus" border style="width: 100%">
+        <el-button @click="router.push({ 'name': 'menu_create' })">添加资源</el-button>
+        <el-button @click="router.push({ 'name': 'resource_category' })">资源类别</el-button>
+        <el-table :data="queryResult.records" border style="width: 100%">
             <el-table-column type="index" label="序号" width="60" align="center" />
-            <el-table-column prop="name" label="菜单名称" align="center" />
-            <el-table-column prop="level" label="菜单层级" width="90" align="center" />
-            <el-table-column prop="icon" label="菜单图标" align="center" />
-            <el-table-column prop="href" label="菜单路径" align="center" />
-            <el-table-column prop="order_num" label="排序" width="60" align="center" />
-            <el-table-column label="操作" v-slot="scope">
-                <el-button class="primary" type="primary"
-                    @click="router.push({ 'name': 'menu_edit', params: { id: scope.row.id } })">编辑</el-button>
-                <el-button class="danger" type="danger" @click="handleDeleteMenu(scope.row.id)">删除</el-button>
+            <el-table-column prop="name" label="资源名称" width="180" align="center" />
+            <el-table-column prop="href" label="资源路径" width="180" align="center" />
+            <el-table-column prop="description" label="描述" width="180" align="center" />
+            <el-table-column prop="created_at" label="创建时间" align="center" />
+            <el-table-column label="操作">
+                <el-button type="primary">编辑</el-button>
+                <el-button type="danger">删除</el-button>
             </el-table-column>
         </el-table>
+        <template #footer>
+            <el-pagination background v-model:current-page="queryResult.current" v-model:page-size="queryResult.size"
+                :page-sizes="[1, 30, 100]" layout="total, prev, pager, next, sizes" :total="queryResult.total" @size-change="(size) => {
+                    queryResources({ size: size })
+                }" @current-change="(current) => {
+    queryResources({ current: current })
+}" />
+        </template>
     </el-card>
 </template>
 
@@ -57,5 +75,13 @@ getRoleList().then((res) => {
 
 .box-card {
     width: auto;
+}
+
+.el-table {
+    margin-top: 15px;
+}
+
+.demo-form-inline .el-input {
+    --el-input-width: 220px;
 }
 </style>

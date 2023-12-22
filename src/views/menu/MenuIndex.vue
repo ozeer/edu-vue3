@@ -14,6 +14,7 @@ const pageSize = ref(15)
     <el-card class="box-card">
         <template #header>
             <div class="card-header">
+                <h3>菜单列表</h3>
                 <el-button class="button" type="primary" @click="router.push({ 'name': 'menu_create' })">添加菜单</el-button>
             </div>
         </template>
@@ -30,10 +31,11 @@ const pageSize = ref(15)
                 <el-button class="danger" type="danger" @click="handleDeleteMenu(scope.row.id)">删除</el-button>
             </el-table-column>
         </el-table>
-        <el-divider />
-        <el-pagination background v-model:current-page="currentPage" v-model:page-size="pageSize"
-            :page-sizes="[10, 15, 20, 30]" layout="total, prev, pager, next, sizes" :total="totalPage"
-            @size-change="getAllMenus(currentPage, pageSize)" @current-change="getAllMenus(currentPage, pageSize)" />
+        <template #footer>
+            <el-pagination background v-model:current-page="currentPage" v-model:page-size="pageSize"
+                :page-sizes="[10, 15, 20, 30]" layout="total, prev, pager, next, sizes" :total="totalPage"
+                @size-change="getAllMenus(currentPage, pageSize)" @current-change="getAllMenus(currentPage, pageSize)" />
+        </template>
     </el-card>
 </template>
 

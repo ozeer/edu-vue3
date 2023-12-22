@@ -9,7 +9,7 @@ export function useMenus() {
   // 1、获取所有菜单
   const allMenus = ref([] as MenuItem[])
   const totalPage = ref(0)
-  const getAllMenus = async (page: number, size: number) => {
+  const getAllMenus = async (page = 1, size = 15) => {
     const { data } = await getMenuList(page, size)
 
     if (data.code === 200) {
@@ -81,7 +81,7 @@ export function useMenus() {
 
     if (data.code === 200) {
       ElMessage.success('删除成功！')
-      getAllMenus(1, 15)
+      getAllMenus()
     } else {
       ElMessage.error('菜单信息删除失败')
       throw new Error('菜单信息删除失败')
