@@ -33,14 +33,8 @@ export type Condition = Partial<{
 }>
 
 export type QueryResult = {
-  current: number
-  hitCount: number
-  orders: any[]
-  records: any[]
-  pages: number
-  size: number
+  list: any[]
   total: number
-  searchCount: number
 }
 
 export const getAllResource = (condition: Condition) => {

@@ -23,7 +23,7 @@ const initAndShow = (id = 0) => {
     if (id) {
         isCreate.value = false
         msgText.value = '更新'
-        const selectResource = queryResult.value.records.find((item) => item.id === id)
+        const selectResource = queryResult.value.list.find((item) => item.id === id)
         Object.assign(form, selectResource)
     } else {
         isCreate.value = true

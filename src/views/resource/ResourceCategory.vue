@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { allResourceCategory, getAllResourceCategory, totalPage, handleDelete } from '../../combined/useResourceCategory'
+import { allResourceCategory, queryResourceCategory, currentPage, pageSize, total, handleDelete } from '../../combined/useResourceCategory'
 import ResourceCategoryDialog from './ResourceCategoryDialog.vue';
 import { useRouter } from 'vue-router';
 
-getAllResourceCategory()
-const currentPage = ref(1)
-const pageSize = ref(15)
+queryResourceCategory()
 const dlgResourceCategoryEdit = ref<InstanceType<typeof ResourceCategoryDialog>>()
 const router = useRouter();
 
@@ -33,9 +31,8 @@ const router = useRouter();
         <ResourceCategoryDialog ref="dlgResourceCategoryEdit" />
         <template #footer>
             <el-pagination background v-model:current-page="currentPage" v-model:page-size="pageSize"
-                :page-sizes="[15, 20, 30]" layout="total, prev, pager, next, sizes" :total="totalPage"
-                @size-change="getAllResourceCategory(currentPage, pageSize)"
-                @current-change="getAllResourceCategory(currentPage, pageSize)" />
+                :page-sizes="[15, 20, 30]" layout="total, prev, pager, next, sizes" :total="total"
+                @size-change="queryResourceCategory()" @current-change="queryResourceCategory()" />
         </template>
     </el-card>
 </template>

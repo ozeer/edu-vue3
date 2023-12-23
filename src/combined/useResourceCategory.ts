@@ -1,4 +1,9 @@
-import { getAllCategory, submitEditCategory, deleteCategory } from '@/api/resource_category'
+import {
+  getAllCategory,
+  queryCategory,
+  submitEditCategory,
+  deleteCategory
+} from '@/api/resource_category'
 import type { ResourceCategory } from '@/api/resource_category'
 
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -6,15 +11,29 @@ import { reactive, ref } from 'vue'
 
 // 保存所有资源类别信息
 export const allResourceCategory = ref([] as ResourceCategory[])
-export const totalPage = ref(0)
+export const allCategoryItem = ref([] as ResourceCategory[])
+export const currentPage = ref(1)
+export const pageSize = ref(15)
+export const total = ref(0)
 
-// 获取所有资源类别信息
-export const getAllResourceCategory = async (page = 1, size = 15) => {
-  const { data } = await getAllCategory(page, size)
+// 查询资源类别信息
+export const queryResourceCategory = async (page = currentPage, size = pageSize) => {
+  const { data } = await queryCategory(page.value, size.value)
 
   if (data.code === 200) {
     allResourceCategory.value = data.data.list
-    totalPage.value = data.data.total
+    total.value = data.data.total
+  } else {
+    ElMessage.error('获取所有资源类别信息失败')
+  }
+}
+
+// 获取所有资源类别信息
+export const getAllCategoryItem = async () => {
+  const { data } = await getAllCategory()
+
+  if (data.code === 200) {
+    allCategoryItem.value = data.data.list
   } else {
     ElMessage.error('获取所有资源类别信息失败')
   }
@@ -32,7 +51,7 @@ export const onSubmit = async () => {
 
   if (data.code === 200) {
     ElMessage.success(`${msgText.value}资源类型成功`)
-    getAllResourceCategory()
+    queryResourceCategory()
   } else {
     ElMessage.error(`${msgText.value}资源类型失败`)
   }
@@ -61,7 +80,7 @@ export const handleDelete = async (id: number) => {
   const { data } = await deleteCategory(id)
   if (data.code === 200) {
     ElMessage.success('删除成功')
-    getAllResourceCategory()
+    queryResourceCategory()
   } else {
     ElMessage.error('删除失败')
   }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { FormInstance } from 'element-plus';
-import { queryCondition, queryResult, queryResources } from "../../combined/useResources"
-import { allResourceCategory, getAllResourceCategory } from "../../combined/useResourceCategory"
+import { queryCondition, queryResult, queryResources, currentPage, pageSize, total, } from "../../combined/useResources"
+import { allCategoryItem, getAllCategoryItem } from "../../combined/useResourceCategory"
 import ResourceEditDialog from './ResourceEditDialog.vue';
 
 const router = useRouter();
@@ -10,7 +10,7 @@ const queryFm = ref<FormInstance>()
 const dlgResourceEdit = ref<InstanceType<typeof ResourceEditDialog>>()
 
 queryResources()
-getAllResourceCategory()
+getAllCategoryItem()
 </script>
 
 <template>
@@ -26,7 +26,7 @@ getAllResourceCategory()
                 <el-form-item label="资源分类" prop="category_id">
                     <el-select v-model="queryCondition.category_id" placeholder="资源分类" clearable>
                         <el-option label="不限制" :value="0" />
-                        <el-option v-for="category in allResourceCategory" :key="category.id" :label="category.name"
+                        <el-option v-for="category in allCategoryItem" :key="category.id" :label="category.name"
                             :value="category.id" />
                     </el-select>
                 </el-form-item>
@@ -38,7 +38,7 @@ getAllResourceCategory()
         </template>
         <el-button @click="dlgResourceEdit?.initAndShow(0)">添加资源</el-button>
         <el-button @click="router.push({ 'name': 'resource_category' })">资源类别管理</el-button>
-        <el-table :data="queryResult.records" border style="width: 100%">
+        <el-table :data="queryResult.list" border style="width: 100%">
             <el-table-column type="index" label="序号" width="60" align="center" />
             <el-table-column prop="name" label="资源名称" width="180" align="center" />
             <el-table-column prop="url" label="资源路径" width="180" align="center" />
@@ -51,12 +51,9 @@ getAllResourceCategory()
         </el-table>
         <ResourceEditDialog ref="dlgResourceEdit" />
         <template #footer>
-            <el-pagination background v-model:current-page="queryResult.current" v-model:page-size="queryResult.size"
-                :page-sizes="[15, 20, 30]" layout="total, prev, pager, next, sizes" :total="queryResult.total" @size-change="(size) => {
-                    queryResources({ size: size })
-                }" @current-change="(current) => {
-    queryResources({ current: current })
-}" />
+            <el-pagination background v-model:current-page="currentPage" v-model:page-size="pageSize"
+                :page-sizes="[15, 20, 30]" layout="total, prev, pager, next, sizes" :total="total"
+                @size-change="queryResources()" @current-change="queryResources()" />
         </template>
     </el-card>
 </template>

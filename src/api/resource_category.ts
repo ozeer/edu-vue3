@@ -20,18 +20,32 @@ export type ResourceCategory = {
   updated_at: string
 }
 
+/**
+ * 查询资源类别分页信息
+ */
 type ResourceCategoryResp = CommonResp<{
   list: ResourceCategory[]
   total: number
 }>
-export const getAllCategory = (page = 1, size = 15) => {
+export const queryCategory = (page = 1, size = 15) => {
   return request<ResourceCategoryResp>({
     method: 'GET',
-    url: '/front/admin/resource/getAllCategory',
+    url: '/front/admin/resource_category/list',
     params: {
       page,
       size
     }
+  })
+}
+
+// 查询所有资源类别
+type AllCategoryItemResp = CommonResp<{
+  list: ResourceCategory[]
+}>
+export const getAllCategory = () => {
+  return request<AllCategoryItemResp>({
+    method: 'GET',
+    url: '/front/admin/resource_category/all'
   })
 }
 
@@ -45,7 +59,7 @@ export type CategoryFormInfo = {
 export const submitEditCategory = (data: CategoryFormInfo) => {
   return request<CommonResp<string>>({
     method: 'POST',
-    url: '/front/admin/resource/editCategory',
+    url: '/front/admin/resource_category/edit',
     data: data
   })
 }
@@ -53,7 +67,7 @@ export const submitEditCategory = (data: CategoryFormInfo) => {
 export const deleteCategory = (id: number) => {
   return request<CommonResp<string>>({
     method: 'POST',
-    url: '/front/admin/resource/deleteCategory',
+    url: '/front/admin/resource_category/delete',
     data: `id=${id}`
   })
 }
