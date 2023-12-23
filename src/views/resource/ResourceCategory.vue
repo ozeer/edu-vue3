@@ -29,7 +29,7 @@ const dlgResourceCategoryEdit = ref<InstanceType<typeof ResourceCategoryDialog>>
         <ResourceCategoryDialog ref="dlgResourceCategoryEdit" />
         <template #footer>
             <el-pagination background v-model:current-page="currentPage" v-model:page-size="pageSize"
-                :page-sizes="[10, 15, 20, 30]" layout="total, prev, pager, next, sizes" :total="totalPage"
+                :page-sizes="[15, 20, 30]" layout="total, prev, pager, next, sizes" :total="totalPage"
                 @size-change="getAllResourceCategory(currentPage, pageSize)"
                 @current-change="getAllResourceCategory(currentPage, pageSize)" />
         </template>

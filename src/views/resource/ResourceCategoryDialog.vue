@@ -11,6 +11,9 @@ const initAndShow = (id = 0) => {
         msgText.value = '更新'
         const selectCategory = allResourceCategory.value.find((item) => item.id === id)
         Object.assign(form, selectCategory)
+    } else {
+        isCreate.value = true
+        msgText.value = '创建'
     }
 }
 const fmResourceCategory = ref<FormInstance>()

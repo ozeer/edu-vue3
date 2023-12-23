@@ -45,7 +45,7 @@ export const form = reactive({
 })
 
 export const isCreate = ref(true)
-export const msgText = ref('创建')
+export const msgText = ref('')
 
 // 删除单个资源信息
 export const handleDelete = async (id: number) => {

@@ -1,12 +1,13 @@
-import { getAllResource, type Condition, type QueryResult } from '@/api/resources'
+import { getAllResource } from '@/api/resources'
 import { ElMessage } from 'element-plus'
 import { reactive, ref } from 'vue'
+import type { Condition, QueryResult } from '@/api/resources'
 
 // 查询条件
 export const queryCondition = reactive<Condition>({
   name: '',
   url: '',
-  categoryId: '',
+  category_id: 0,
   current: 1,
   size: 15
 })
