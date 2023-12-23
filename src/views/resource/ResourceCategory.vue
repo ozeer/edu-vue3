@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { allResourceCategory, getAllResourceCategory, totalPage, handleDelete } from '../../combined/useResourceCategory'
 import ResourceCategoryDialog from './ResourceCategoryDialog.vue';
+import { useRouter } from 'vue-router';
 
 getAllResourceCategory()
 const currentPage = ref(1)
 const pageSize = ref(15)
 const dlgResourceCategoryEdit = ref<InstanceType<typeof ResourceCategoryDialog>>()
+const router = useRouter();
+
 </script>
 
 <template>
@@ -16,6 +19,7 @@ const dlgResourceCategoryEdit = ref<InstanceType<typeof ResourceCategoryDialog>>
                 <el-button class="button" type="primary" @click="dlgResourceCategoryEdit?.initAndShow(0)">创建类别</el-button>
             </div>
         </template>
+        <el-button @click="router.push({ 'name': 'resources' })">资源管理</el-button>
         <el-table :data="allResourceCategory" border style="width: 100%">
             <el-table-column type="index" label="序号" width="60" align="center" />
             <el-table-column prop="name" label="类别名称" width="180" align="center" />
@@ -53,5 +57,9 @@ const dlgResourceCategoryEdit = ref<InstanceType<typeof ResourceCategoryDialog>>
 
 .box-card {
     width: auto;
+}
+
+.el-table {
+    margin-top: 15px;
 }
 </style>

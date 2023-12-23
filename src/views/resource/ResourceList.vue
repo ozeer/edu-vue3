@@ -37,7 +37,7 @@ getAllResourceCategory()
             </el-form>
         </template>
         <el-button @click="dlgResourceEdit?.initAndShow(0)">添加资源</el-button>
-        <el-button @click="router.push({ 'name': 'resource_category' })">资源类别</el-button>
+        <el-button @click="router.push({ 'name': 'resource_category' })">资源类别管理</el-button>
         <el-table :data="queryResult.records" border style="width: 100%">
             <el-table-column type="index" label="序号" width="60" align="center" />
             <el-table-column prop="name" label="资源名称" width="180" align="center" />
