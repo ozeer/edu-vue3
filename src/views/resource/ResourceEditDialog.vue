@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { FormInstance } from 'element-plus';
 import { queryResult, queryResources } from '../../combined/useResources'
 import { submitEditResource } from '../../api/resources'
-import { allResourceCategory } from '../../combined/useResourceCategory'
+import { allCategoryItem } from "../../combined/useResourceCategory"
 
 const initData = () => ({
+    id: 0,
     name: '',
     category_id: 0,
     url: '',
@@ -17,8 +17,7 @@ const isCreate = ref(true)
 const msgText = ref('')
 
 const initAndShow = (id = 0) => {
-    fmResource.value?.resetFields()
-    // Object.assign(form, initData())
+    Object.assign(form, initData())
     dialogFormVisible.value = true
     if (id) {
         isCreate.value = false
@@ -49,8 +48,6 @@ const onSubmit = async () => {
     }
 }
 
-const fmResource = ref<FormInstance>()
-
 defineExpose({
     initAndShow,
 })
@@ -58,7 +55,7 @@ defineExpose({
 
 <template>
     <el-dialog v-model="dialogFormVisible" :title="msgText + '资源'">
-        <el-form :model="form" ref="fmResource">
+        <el-form :model="form">
             <el-form-item label="资源名称" label-width="140px" prop="name">
                 <el-input v-model="form.name" autocomplete="off" />
             </el-form-item>
@@ -68,7 +65,7 @@ defineExpose({
             <el-form-item label="资源类别" label-width="140px" prop="category_id">
                 <el-select v-model="form.category_id" placeholder="资源类别">
                     <el-option label="不限制" :value="0" />
-                    <el-option v-for="category in allResourceCategory" :key="category.id" :value="category.id"
+                    <el-option v-for="category in allCategoryItem" :key="category.id" :value="category.id"
                         :label="category.name" />
                 </el-select>
             </el-form-item>

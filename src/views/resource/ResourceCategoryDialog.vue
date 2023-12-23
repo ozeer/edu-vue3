@@ -1,10 +1,39 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { FormInstance } from 'element-plus';
-import { dialogFormVisible, form, isCreate, msgText, onSubmit, allResourceCategory } from '../../combined/useResourceCategory'
+import { allResourceCategory, queryResourceCategory } from '../../combined/useResourceCategory'
+import { submitEditCategory } from '../../api/resource_category'
+
+// 提交按钮事件处理
+const onSubmit = async () => {
+    if (!form.name) {
+        ElMessage.error('资源类别不能为空')
+        return
+    }
+    const { data } = await submitEditCategory(form).finally(() => {
+        dialogFormVisible.value = false
+    })
+
+    if (data.code === 200) {
+        ElMessage.success(`${msgText.value}资源类型成功`)
+        queryResourceCategory()
+    } else {
+        ElMessage.error(`${msgText.value}资源类型失败`)
+    }
+}
+
+const dialogFormVisible = ref(false)
+const isCreate = ref(true)
+const msgText = ref('')
+const initData = () => ({
+    id: 0,
+    name: '',
+    sort: 0
+})
+const form = reactive(initData())
 
 const initAndShow = (id = 0) => {
-    fmResourceCategory.value?.resetFields()
+    Object.assign(form, initData())
+
     dialogFormVisible.value = true
     if (id) {
         isCreate.value = false
@@ -16,8 +45,6 @@ const initAndShow = (id = 0) => {
         msgText.value = '创建'
     }
 }
-const fmResourceCategory = ref<FormInstance>()
-
 defineExpose({
     initAndShow,
 })
@@ -25,7 +52,7 @@ defineExpose({
 
 <template>
     <el-dialog v-model="dialogFormVisible" :title="msgText + '资源类别'">
-        <el-form :model="form" ref="fmResourceCategory">
+        <el-form :model="form">
             <el-form-item label="类别名称" label-width="140px" prop="name">
                 <el-input v-model="form.name" autocomplete="off" />
             </el-form-item>
