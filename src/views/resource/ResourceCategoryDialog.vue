@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { allResourceCategory, queryResourceCategory } from '../../combined/useResourceCategory'
+import { queryResult, queryResourceCategory } from '../../combined/useResourceCategory'
 import { submitEditCategory } from '../../api/resource_category'
 
 // 提交按钮事件处理
@@ -38,7 +38,7 @@ const initAndShow = (id = 0) => {
     if (id) {
         isCreate.value = false
         msgText.value = '更新'
-        const selectCategory = allResourceCategory.value.find((item) => item.id === id)
+        const selectCategory = queryResult.value.list.find((item) => item.id === id)
         Object.assign(form, selectCategory)
     } else {
         isCreate.value = true

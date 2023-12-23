@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import { FormInstance } from 'element-plus';
-import { queryCondition, queryResult, queryResources, currentPage, pageSize, total, } from "../../combined/useResources"
+import { queryCondition, queryResult, queryResources } from "../../combined/useResources"
 import { allCategoryItem, getAllCategoryItem } from "../../combined/useResourceCategory"
 import ResourceEditDialog from './ResourceEditDialog.vue';
 
@@ -51,8 +51,8 @@ getAllCategoryItem()
         </el-table>
         <ResourceEditDialog ref="dlgResourceEdit" />
         <template #footer>
-            <el-pagination background v-model:current-page="currentPage" v-model:page-size="pageSize"
-                :page-sizes="[15, 20, 30]" layout="total, prev, pager, next, sizes" :total="total"
+            <el-pagination background v-model:current-page="queryCondition.current" v-model:page-size="queryCondition.size"
+                :page-sizes="[15, 20, 30]" layout="total, prev, pager, next, sizes" :total="queryResult.total"
                 @size-change="queryResources()" @current-change="queryResources()" />
         </template>
     </el-card>

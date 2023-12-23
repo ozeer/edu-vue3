@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { allResourceCategory, queryResourceCategory, currentPage, pageSize, total, handleDelete } from '../../combined/useResourceCategory'
+import { queryCondition, queryResult, queryResourceCategory, currentPage, pageSize, handleDelete } from '../../combined/useResourceCategory'
 import ResourceCategoryDialog from './ResourceCategoryDialog.vue';
 import { useRouter } from 'vue-router';
 
@@ -18,7 +18,7 @@ const router = useRouter();
             </div>
         </template>
         <el-button @click="router.push({ 'name': 'resources' })">资源管理</el-button>
-        <el-table :data="allResourceCategory" border style="width: 100%">
+        <el-table :data="queryResult.list" border style="width: 100%">
             <el-table-column type="index" label="序号" width="60" align="center" />
             <el-table-column prop="name" label="类别名称" width="180" align="center" />
             <el-table-column prop="created_at" label="创建时间" align="center" />
@@ -30,8 +30,8 @@ const router = useRouter();
         </el-table>
         <ResourceCategoryDialog ref="dlgResourceCategoryEdit" />
         <template #footer>
-            <el-pagination background v-model:current-page="currentPage" v-model:page-size="pageSize"
-                :page-sizes="[15, 20, 30]" layout="total, prev, pager, next, sizes" :total="total"
+            <el-pagination background v-model:current-page="queryCondition.current" v-model:page-size="queryCondition.size"
+                :page-sizes="[15, 20, 30]" layout="total, prev, pager, next, sizes" :total="queryResult.total"
                 @size-change="queryResourceCategory()" @current-change="queryResourceCategory()" />
         </template>
     </el-card>

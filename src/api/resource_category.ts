@@ -5,10 +5,11 @@
 import request from '@/utils/request'
 import type { CommonResp } from '@/utils/response'
 
-/**
- * 获取所有资源类别接口
- * @returns
- */
+export type Condition = Partial<{
+  current: number
+  size: number
+}>
+
 export type ResourceCategory = {
   id: number
   name: string
@@ -20,6 +21,11 @@ export type ResourceCategory = {
   updated_at: string
 }
 
+export type QueryResult = {
+  list: ResourceCategory[]
+  total: number
+}
+
 /**
  * 查询资源类别分页信息
  */
@@ -27,14 +33,11 @@ type ResourceCategoryResp = CommonResp<{
   list: ResourceCategory[]
   total: number
 }>
-export const queryCategory = (page = 1, size = 15) => {
+export const queryCategory = (condition: Condition) => {
   return request<ResourceCategoryResp>({
-    method: 'GET',
+    method: 'POST',
     url: '/front/admin/resource_category/list',
-    params: {
-      page,
-      size
-    }
+    data: condition
   })
 }
 

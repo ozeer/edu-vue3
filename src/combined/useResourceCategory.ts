@@ -1,23 +1,33 @@
 import { getAllCategory, queryCategory, deleteCategory } from '@/api/resource_category'
-import type { ResourceCategory } from '@/api/resource_category'
+import type { ResourceCategory, QueryResult } from '@/api/resource_category'
 
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
+import type { Condition } from '@/api/resource_category'
+
+// 查询条件
+export const queryCondition = reactive<Condition>({
+  current: 1,
+  size: 15
+})
 
 // 保存所有资源类别信息
-export const allResourceCategory = ref([] as ResourceCategory[])
 export const allCategoryItem = ref([] as ResourceCategory[])
 export const currentPage = ref(1)
 export const pageSize = ref(15)
-export const total = ref(0)
+
+export const queryResult = ref<QueryResult>({
+  list: [],
+  total: 0
+})
 
 // 查询资源类别信息
-export const queryResourceCategory = async (page = currentPage, size = pageSize) => {
-  const { data } = await queryCategory(page.value, size.value)
+export const queryResourceCategory = async (params: Condition = {}) => {
+  Object.assign(queryCondition, params)
+  const { data } = await queryCategory(queryCondition)
 
   if (data.code === 200) {
-    allResourceCategory.value = data.data.list
-    total.value = data.data.total
+    queryResult.value = data.data
   } else {
     ElMessage.error('获取所有资源类别信息失败')
   }
