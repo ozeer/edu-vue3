@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import { queryCondition, queryResult, queryResourceCategory, currentPage, pageSize, handleDelete } from '../../combined/useResourceCategory'
+import { queryCondition, queryResult, queryResourceCategory, handleDelete } from '../../combined/useResourceCategory'
 import ResourceCategoryDialog from './ResourceCategoryDialog.vue';
-import { useRouter } from 'vue-router';
 
 queryResourceCategory()
 const dlgResourceCategoryEdit = ref<InstanceType<typeof ResourceCategoryDialog>>()
-const router = useRouter();
-
 </script>
 
 <template>
@@ -17,7 +14,6 @@ const router = useRouter();
                 <el-button class="button" type="primary" @click="dlgResourceCategoryEdit?.initAndShow(0)">创建类别</el-button>
             </div>
         </template>
-        <el-button @click="router.push({ 'name': 'resources' })">资源管理</el-button>
         <el-table :data="queryResult.list" border style="width: 100%">
             <el-table-column type="index" label="序号" width="60" align="center" />
             <el-table-column prop="name" label="类别名称" width="180" align="center" />

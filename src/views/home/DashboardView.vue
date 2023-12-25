@@ -3,7 +3,9 @@
 </script>
 
 <template>
-    <h1>用户编辑</h1>
+    <div>
+
+    </div>
 </template>
 
 <style lang="scss" scoped></style>

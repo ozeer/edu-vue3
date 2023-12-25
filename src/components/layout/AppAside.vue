@@ -23,26 +23,26 @@ import { isCollapse } from "./isCollapse";
                         </el-icon>
                         <span>角色管理</span>
                     </el-menu-item>
-                    <el-menu-item index="/menu/list">
+                    <el-menu-item index="/menus">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>
                         <span>菜单管理</span>
                     </el-menu-item>
-                    <el-menu-item index="/resource/list">
+                    <el-menu-item index="/resources">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>
                         <span>资源管理</span>
                     </el-menu-item>
                 </el-sub-menu>
-                <el-menu-item index="/user/list">
+                <el-menu-item index="/users">
                     <el-icon>
                         <IEpUser />
                     </el-icon>
                     <span>用户管理</span>
                 </el-menu-item>
-                <el-menu-item index="/course/list">
+                <el-menu-item index="/courses">
                     <el-icon>
                         <IEpNotebook />
                     </el-icon>
@@ -55,7 +55,7 @@ import { isCollapse } from "./isCollapse";
                         </el-icon>
                         <span>广告管理</span>
                     </template>
-                    <el-menu-item index="/adv/list">
+                    <el-menu-item index="/adv">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>

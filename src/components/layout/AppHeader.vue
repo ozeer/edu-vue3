@@ -2,6 +2,7 @@
 import { isCollapse } from "./isCollapse";
 import { getUserInfo, logout } from "../../api/users"
 import { useTokenStore } from "../../stores/access_token"
+import BreadCrumb from "./BreadCrumb.vue"
 import { useRouter } from 'vue-router';
 const router = useRouter()
 
@@ -40,11 +41,14 @@ const handleLogout = async () => {
             <IEp-Fold v-show="!isCollapse" />
         </el-icon>
         <!--面包屑-->
-        <el-breadcrumb separator="/">
+        <!-- <el-breadcrumb separator="/">
             <el-breadcrumb-item v-for="(item, index) in $route.matched" :key="index" :to="{ path: item.path }">{{
                 item.meta.title
             }}</el-breadcrumb-item>
-        </el-breadcrumb>
+        </el-breadcrumb> -->
+        <el-col :span="12">
+            <BreadCrumb />
+        </el-col>
         <!--下拉菜单-->
         <el-dropdown>
             <span class="el-dropdown-link">

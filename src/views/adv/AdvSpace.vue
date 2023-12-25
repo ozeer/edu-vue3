@@ -3,15 +3,14 @@ import { useRouter } from 'vue-router';
 import { useMenus } from "../../combined/useMenus"
 
 const router = useRouter();
-const { allMenus, getAllMenus, handleDeleteMenu } = useMenus()
-getAllMenus(1, 15)
+const { allMenus, handleDeleteMenu } = useMenus()
 </script>
 
 <template>
     <el-card class="box-card">
         <template #header>
             <div class="card-header">
-                <el-button class="button" type="primary" @click="router.push({ 'name': 'menu_create' })">添加菜单</el-button>
+                <el-button class="button" type="primary" @click="router.push({ 'name': 'menu_create' })">添加广告位</el-button>
             </div>
         </template>
         <el-table :data="allMenus" border style="width: 100%">

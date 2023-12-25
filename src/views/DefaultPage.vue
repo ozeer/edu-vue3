@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <h1>用户编辑</h1>
+    <h1>默认页</h1>
 </template>
 
 <style lang="scss" scoped></style>

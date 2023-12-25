@@ -2,8 +2,9 @@
 
 </script>
 
+// 单独给三级路由使用 的router-view
 <template>
-    <h1>用户编辑</h1>
+    <router-view></router-view>
 </template>
 
 <style lang="scss" scoped></style>

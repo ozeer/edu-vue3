@@ -10,6 +10,8 @@ declare module 'vue' {
     AppAside: typeof import('./src/components/layout/AppAside.vue')['default']
     AppHeader: typeof import('./src/components/layout/AppHeader.vue')['default']
     AppLayout: typeof import('./src/components/layout/AppLayout.vue')['default']
+    Breadcrumb: typeof import('./src/components/layout/Breadcrumb.vue')['default']
+    BreadCrumb: typeof import('./src/components/layout/BreadCrumb.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
@@ -69,6 +71,8 @@ declare module 'vue' {
     IEpTrendCharts: typeof import('~icons/ep/trend-charts')['default']
     IEpUser: typeof import('~icons/ep/user')['default']
     IEpView: (typeof import('~icons/ep/view'))['default']
+    IndexPage: typeof import('./src/components/layout/IndexPage.vue')['default']
+    IndexView: typeof import('./src/components/layout/IndexView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
