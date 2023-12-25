@@ -17,7 +17,7 @@ import { isCollapse } from "./isCollapse";
                         </el-icon>
                         <span>权限管理</span>
                     </template>
-                    <el-menu-item index="/role/list">
+                    <el-menu-item index="/roles">
                         <el-icon>
                             <IEpSetting />
                         </el-icon>
