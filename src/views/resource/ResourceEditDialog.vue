@@ -56,13 +56,13 @@ defineExpose({
 <template>
     <el-dialog v-model="dialogFormVisible" :title="msgText + '资源'">
         <el-form :model="form">
-            <el-form-item label="资源名称" label-width="140px" prop="name">
+            <el-form-item label="资源名称" label-width="140px" prop="name" :required="true">
                 <el-input v-model="form.name" autocomplete="off" />
             </el-form-item>
-            <el-form-item label="资源路径" label-width="140px" prop="url">
+            <el-form-item label="资源路径" label-width="140px" prop="url" :required="true">
                 <el-input v-model="form.url" autocomplete="off" />
             </el-form-item>
-            <el-form-item label="资源类别" label-width="140px" prop="category_id">
+            <el-form-item label="资源类别" label-width="140px" prop="category_id" :required="true">
                 <el-select v-model="form.category_id" placeholder="资源类别">
                     <el-option label="不限制" :value="0" />
                     <el-option v-for="category in allCategoryItem" :key="category.id" :value="category.id"

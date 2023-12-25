@@ -53,10 +53,10 @@ defineExpose({
 <template>
     <el-dialog v-model="dialogFormVisible" :title="msgText + '资源类别'">
         <el-form :model="form">
-            <el-form-item label="类别名称" label-width="140px" prop="name">
+            <el-form-item label="类别名称" label-width="140px" prop="name" :required="true">
                 <el-input v-model="form.name" autocomplete="off" />
             </el-form-item>
-            <el-form-item label="排序" label-width="140px" prop="sort">
+            <el-form-item label="排序" label-width="140px" prop="sort" :required="true">
                 <el-input v-model="form.sort" autocomplete="off" />
             </el-form-item>
         </el-form>
