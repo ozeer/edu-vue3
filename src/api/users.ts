@@ -71,7 +71,7 @@ export const refreshToken = () => {
     method: 'POST',
     url: '/front/admin/user/refresh_token',
     params: {
-      refreshToken: useTokenStore().token
+      refresh_token: useTokenStore().token
     }
   })
 }

@@ -27,7 +27,7 @@ request.interceptors.response.use(
   async (error) => {
     if (error.response.status === 401) {
       const { data } = await refreshToken()
-      if (data.code === 0) {
+      if (data.code === 200) {
         // 成功
         // 保存新token
         useTokenStore().saveToken(data.data.access_token)
