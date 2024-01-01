@@ -23,7 +23,7 @@ type LoginResp = CommonResp<{
 export const login = (loginInfo: LoginReq) => {
   return request<LoginResp>({
     method: 'POST',
-    url: '/front/admin/user/login',
+    url: '/front/admin/login/login',
     data: `phone=${loginInfo.phone}&password=${loginInfo.password}`
   })
 }
@@ -69,7 +69,7 @@ type RefreshToken = {
 export const refreshToken = () => {
   return request<RefreshToken>({
     method: 'POST',
-    url: '/front/admin/user/refresh_token',
+    url: '/front/admin/login/refresh_token',
     params: {
       refresh_token: useTokenStore().token
     }
