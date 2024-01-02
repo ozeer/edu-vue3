@@ -16,7 +16,7 @@ request.interceptors.request.use((config) => {
     config.headers = {} as AxiosRequestHeaders
   }
   const store = useTokenStore()
-  config.headers.Authorization = store.token
+  config.headers.Authorization = store.token.access_token
 
   return config
 })
@@ -30,12 +30,12 @@ request.interceptors.response.use(
       if (data.code === 200) {
         // 成功
         // 保存新token
-        useTokenStore().saveToken(data.data.access_token)
+        useTokenStore().saveToken(data.data.access_token, data.data.refresh_token)
         // 重新请求之前的接口，并且把结果返回
         return request(error.config)
       } else {
         // 失败
-        ElMessage.error('刷新token失败，需要重新登录')
+        ElMessage.error('刷新token失败，需要重新登录才可以!')
         router.push('/login')
         return
       }

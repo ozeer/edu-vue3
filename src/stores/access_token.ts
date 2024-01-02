@@ -1,22 +1,30 @@
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { defineStore } from 'pinia'
 import { ElMessage } from 'element-plus'
 
-export const useTokenStore = defineStore('access_token', () => {
-  const access_token = ref('')
+interface Token {
+  access_token: string | null
+  refresh_token: string | null
+}
 
-  const token = computed(() => {
+export const useTokenStore = defineStore('access_token', () => {
+  const token = computed<Token>(() => {
     try {
-      return access_token.value || window.localStorage.getItem('access_token')
+      return {
+        access_token: sessionStorage.getItem('access_token'),
+        refresh_token: localStorage.getItem('refresh_token')
+      }
     } catch (err) {
       ElMessage.error('token获取失败' + err)
       throw err
     }
   })
 
-  function saveToken(data: string) {
-    access_token.value = data
-    window.localStorage.setItem('access_token', data)
+  function saveToken(accessToken = '', refreshToken = '') {
+    // 保存 access_token 到内存中
+    sessionStorage.setItem('access_token', accessToken)
+    // 保存 refresh_token 到本地存储中
+    localStorage.setItem('refresh_token', refreshToken)
   }
 
   return { token, saveToken }

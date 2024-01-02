@@ -38,7 +38,7 @@ const onSubmit = async () => {
         throw err
     })
 
-    const result = await login(form).then(res => {
+    const { data } = await login(form).then(res => {
         // fail
         if (res.data.code != 200) {
             isLoading.value = false;
@@ -51,7 +51,7 @@ const onSubmit = async () => {
         return res.data
     })
 
-    store.saveToken(result.data.access_token)
+    store.saveToken(data.access_token, data.refresh_token)
 
     isLoading.value = false;
 

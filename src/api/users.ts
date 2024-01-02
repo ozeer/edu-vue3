@@ -17,6 +17,7 @@ type LoginResp = CommonResp<{
   uid: string
   nick: string
   access_token: string
+  refresh_token: string
 }>
 
 // 登录
@@ -61,17 +62,16 @@ export const getUsers = () => {
 }
 
 // 刷新token
-type RefreshToken = {
-  code: number
-  data: any
-  msg: string
-}
+type RefreshTokenResp = CommonResp<{
+  access_token: string
+  refresh_token: string
+}>
 export const refreshToken = () => {
-  return request<RefreshToken>({
+  return request<RefreshTokenResp>({
     method: 'POST',
     url: '/front/admin/login/refresh_token',
     params: {
-      refresh_token: useTokenStore().token
+      refresh_token: useTokenStore().token.refresh_token
     }
   })
 }
