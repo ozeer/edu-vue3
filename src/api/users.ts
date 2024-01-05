@@ -70,7 +70,7 @@ export const refreshToken = () => {
   return request<RefreshTokenResp>({
     method: 'POST',
     url: '/front/admin/login/refresh_token',
-    params: {
+    data: {
       refresh_token: useTokenStore().token.refresh_token
     }
   })
