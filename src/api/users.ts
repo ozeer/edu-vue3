@@ -66,12 +66,24 @@ type RefreshTokenResp = CommonResp<{
   access_token: string
   refresh_token: string
 }>
+let resp: Promise<any>
+let isRefresh = false
 export const refreshToken = () => {
-  return request<RefreshTokenResp>({
+  if (isRefresh) {
+    return resp
+  }
+
+  isRefresh = true
+
+  resp = request<RefreshTokenResp>({
     method: 'POST',
     url: '/front/admin/login/refresh_token',
     data: {
-      refresh_token: useTokenStore().token.refresh_token
+      refresh_token: useTokenStore().token?.refresh_token
     }
+  }).finally(() => {
+    isRefresh = false
   })
+
+  return resp
 }
