@@ -7,8 +7,7 @@ export default [
       {
         name: 'adv_list',
         path: '',
-        component: () => import('../views/adv/AdvList.vue'),
-        meta: { title: '广告列表', icon: 'User' }
+        component: () => import('../views/adv/AdvList.vue')
       },
       {
         name: 'adv_space',

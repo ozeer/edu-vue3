@@ -7,6 +7,7 @@ const routers = computed(() => {
     // 过滤掉没有meta的 
     return router.currentRoute.value.matched.filter(item => item.meta.title)
 })
+
 </script>
 
 <template>

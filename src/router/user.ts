@@ -7,8 +7,7 @@ export default [
       {
         name: 'users',
         path: '',
-        component: () => import('../views/user/UserList.vue'),
-        meta: { title: '用户列表', icon: 'User' }
+        component: () => import('../views/user/UserList.vue')
       },
       {
         name: 'user_profile',

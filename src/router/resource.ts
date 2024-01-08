@@ -7,8 +7,7 @@ export default [
       {
         name: 'resources',
         path: '',
-        component: () => import('../views/resource/ResourceList.vue'),
-        meta: { title: '资源列表', icon: 'User' }
+        component: () => import('../views/resource/ResourceList.vue')
       },
       {
         name: 'resource_category',
