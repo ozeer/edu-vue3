@@ -9,7 +9,9 @@ const router = useRouter()
 // 获取用户信息
 const userInfo = ref({ avatar: '', nick: '' })
 getUserInfo().then((res) => {
-    userInfo.value = res.data.data;
+    if (res?.data) {
+        userInfo.value = res.data.data;
+    }
 })
 
 // 退出登录
