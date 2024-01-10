@@ -13,7 +13,7 @@ export const useTokenStore = defineStore('access_token', () => {
   const token = computed<Token>(() => {
     try {
       return {
-        access_token: access_token.value || sessionStorage.getItem('access_token'),
+        access_token: access_token.value || window.sessionStorage.getItem('access_token'),
         refresh_token: access_token.value || window.localStorage.getItem('refresh_token')
       }
     } catch (err) {
